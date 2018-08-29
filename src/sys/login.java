@@ -119,6 +119,7 @@ public class login extends javax.swing.JFrame {
         } else {
             Principal tela = new Principal (user);
             tela.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 

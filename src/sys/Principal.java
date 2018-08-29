@@ -93,6 +93,7 @@ Usuario user;
         // TODO add your handling code here:
         alunosPane alunos = new alunosPane(user);
         alunos.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnAlunosPaneActionPerformed
 
 
