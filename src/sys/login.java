@@ -9,6 +9,7 @@ import java.awt.Color;
 import static java.awt.Color.blue;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import model.Usuario;
 
 /**
  *
@@ -110,8 +111,15 @@ public class login extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
+        Usuario user =null;
         loginController login = new loginController();
         login.login(txtUsuario.getText().trim(), txtSenha.getText().trim());
+        if (user == null) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário inválido!", "ERRO", 'e');
+        } else {
+            Principal tela = new Principal (user);
+            tela.setVisible(true);
+        }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**

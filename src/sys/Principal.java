@@ -5,17 +5,21 @@
  */
 package sys;
 
+import model.Usuario;
+import panes.alunosPane;
+
 /**
  *
  * @author Usuario
  */
 public class Principal extends javax.swing.JFrame {
-
+Usuario user;
     /**
      * Creates new form Principal
      */
-    public Principal() {
+    public Principal(Usuario user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -27,7 +31,44 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        btnCadastros = new javax.swing.JMenu();
+        btnAlunosPane = new javax.swing.JMenuItem();
+        btnSistema = new javax.swing.JMenu();
+        btnSobre = new javax.swing.JMenuItem();
+        btnSair = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        btnCadastros.setText("Cadastros");
+
+        btnAlunosPane.setText("Alunos");
+        btnAlunosPane.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlunosPaneActionPerformed(evt);
+            }
+        });
+        btnCadastros.add(btnAlunosPane);
+
+        jMenuBar1.add(btnCadastros);
+
+        btnSistema.setText("Sistema");
+
+        btnSobre.setText("Sobre");
+        btnSistema.add(btnSobre);
+
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+        btnSistema.add(btnSair);
+
+        jMenuBar1.add(btnSistema);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -37,13 +78,30 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnAlunosPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlunosPaneActionPerformed
+        // TODO add your handling code here:
+        alunosPane alunos = new alunosPane(user);
+        alunos.setVisible(true);
+    }//GEN-LAST:event_btnAlunosPaneActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnAlunosPane;
+    private javax.swing.JMenu btnCadastros;
+    private javax.swing.JMenuItem btnSair;
+    private javax.swing.JMenu btnSistema;
+    private javax.swing.JMenuItem btnSobre;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }
