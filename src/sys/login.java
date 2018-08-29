@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package sys;
+import controller.loginController;
 import java.awt.Color;
 import static java.awt.Color.blue;
 import java.awt.Image;
@@ -109,12 +110,8 @@ public class login extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        if (validateUser()==true) {
-            Principal tela = new Principal();
-            tela.setVisible(true);
-        } else {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Login inválido!", "ERRO", 'e');
-        }
+        loginController login = new loginController();
+        login.login(txtUsuario.getText().trim(), txtSenha.getText().trim());
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
@@ -152,29 +149,7 @@ public class login extends javax.swing.JFrame {
         });
     }
     
-  public boolean validateUser() {
-      if ( (txtUsuario.getText().equals("nmp")) && (txtSenha.getText().equals("nmp123")) ) {
-          return true;
-      } else {
-        if ( (txtUsuario.getText().equals("rp")) && (txtSenha.getText().equals("rp123")) ) {
-          return true;
-        } else {
-          if ( (txtUsuario.getText().equals("dn")) && (txtSenha.getText().equals("dn123")) ) {
-          return true;  
-        } else {
-           if ( (txtUsuario.getText().equals("hm")) && (txtSenha.getText().equals("hm123")) ) {
-          return true;   
-          } else {
-            if ( (txtUsuario.getText().equals("fef")) && (txtSenha.getText().equals("fef123")) ) {
-          return true; 
-           } else {
-                return false;
-            }   
-                }
-               }
-              }
-      }
-  }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel lblImagem;
