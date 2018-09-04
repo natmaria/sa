@@ -5,6 +5,9 @@
  */
 package panes;
 
+import controller.alunosPaneController;
+import editors.alunosEditor;
+import model.Aluno;
 import model.Usuario;
 
 /**
@@ -38,6 +41,11 @@ Usuario user;
         btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         tblAlunos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tblAlunos.setModel(new javax.swing.table.DefaultTableModel(
@@ -74,6 +82,11 @@ Usuario user;
         btnNovo.setForeground(new java.awt.Color(255, 255, 255));
         btnNovo.setText("Novo");
         btnNovo.setBorderPainted(false);
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
 
         btnEditar.setBackground(new java.awt.Color(51, 153, 255));
         btnEditar.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,6 +146,20 @@ Usuario user;
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        // TODO add your handling code here:
+        alunosEditor editor = new alunosEditor();
+        editor.setModal(true);
+        editor.setVisible(true);
+    }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        alunosPaneController aluno = new alunosPaneController();
+        aluno.mostrarAlunos();
+        
+    }//GEN-LAST:event_formWindowOpened
 
 
 

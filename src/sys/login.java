@@ -111,7 +111,7 @@ public class login extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        Usuario user =null;
+        Usuario user = null;
         loginController login = new loginController();
         login.login(txtUsuario.getText().trim(), txtSenha.getText().trim());
         if (user == null) {
