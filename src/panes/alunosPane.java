@@ -33,50 +33,16 @@ Usuario user;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblAlunos = new javax.swing.JTable();
         btnNovo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtbAlunos = new javax.swing.JTable();
+        lblAluno = new javax.swing.JLabel();
+        lblAluno1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
-
-        tblAlunos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tblAlunos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Código", "Nome", "CPF", "Cidade", "E-mail", "Celular"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblAlunos.setShowHorizontalLines(false);
-        jScrollPane1.setViewportView(tblAlunos);
-        if (tblAlunos.getColumnModel().getColumnCount() > 0) {
-            tblAlunos.getColumnModel().getColumn(0).setResizable(false);
-            tblAlunos.getColumnModel().getColumn(1).setResizable(false);
-            tblAlunos.getColumnModel().getColumn(2).setResizable(false);
-            tblAlunos.getColumnModel().getColumn(3).setResizable(false);
-            tblAlunos.getColumnModel().getColumn(4).setResizable(false);
-            tblAlunos.getColumnModel().getColumn(5).setResizable(false);
-        }
 
         btnNovo.setBackground(new java.awt.Color(51, 153, 255));
         btnNovo.setForeground(new java.awt.Color(255, 255, 255));
@@ -108,6 +74,27 @@ Usuario user;
         btnVoltar.setText("Voltar");
         btnVoltar.setBorderPainted(false);
 
+        jtbAlunos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jtbAlunos);
+
+        lblAluno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblAluno.setForeground(new java.awt.Color(51, 153, 255));
+        lblAluno.setText("Aluno");
+
+        lblAluno1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblAluno1.setForeground(new java.awt.Color(51, 153, 255));
+        lblAluno1.setText("Alunos");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,29 +102,45 @@ Usuario user;
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnVoltar)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                        .addComponent(btnVoltar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAluno1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(lblAluno)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(21, 21, 21)
+                .addComponent(lblAluno1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
                     .addComponent(btnEditar)
                     .addComponent(btnExcluir)
                     .addComponent(btnVoltar))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(lblAluno)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -154,13 +157,6 @@ Usuario user;
         editor.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        alunosPaneController aluno = new alunosPaneController();
-        aluno.mostrarAlunos();
-        
-    }//GEN-LAST:event_formWindowOpened
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -169,6 +165,8 @@ Usuario user;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblAlunos;
+    private javax.swing.JTable jtbAlunos;
+    private javax.swing.JLabel lblAluno;
+    private javax.swing.JLabel lblAluno1;
     // End of variables declaration//GEN-END:variables
 }

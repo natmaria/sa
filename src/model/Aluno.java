@@ -10,43 +10,42 @@ package model;
  * @author nmp
  */
 public class Aluno {
-   private String id;
-   private String nome;
-   private String cpf;
-   private String cidade;
+   private int mat_aluno;
+   private int cod_curso;
+   private String dt_nasc;
+   private String nom_aluno;
    private String email;
-   private String celular;
 
-    public String getId() {
-        return id;
+    public int getMat_aluno() {
+        return mat_aluno;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setMat_aluno(int mat_aluno) {
+        this.mat_aluno = mat_aluno;
     }
 
-    public String getNome() {
-        return nome;
+    public int getCod_curso() {
+        return cod_curso;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setCod_curso(int cod_curso) {
+        this.cod_curso = cod_curso;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getDt_nasc() {
+        return dt_nasc;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setDt_nasc(String dt_nasc) {
+        this.dt_nasc = dt_nasc;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getNom_aluno() {
+        return nom_aluno;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setNom_aluno(String nom_aluno) {
+        this.nom_aluno = nom_aluno;
     }
 
     public String getEmail() {
@@ -55,14 +54,6 @@ public class Aluno {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
     }
    
 }

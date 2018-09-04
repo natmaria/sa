@@ -28,38 +28,20 @@ public class alunosEditor extends javax.swing.JDialog {
     private void initComponents() {
 
         lblAluno = new javax.swing.JLabel();
-        lblNome = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
-        lblCpf = new javax.swing.JLabel();
-        lblCidade = new javax.swing.JLabel();
-        txtCidade = new javax.swing.JTextField();
-        lblEmail = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
-        lblCel = new javax.swing.JLabel();
-        txtCel = new javax.swing.JFormattedTextField();
         btnOk = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        txtCpf = new javax.swing.JFormattedTextField();
+        txtNome = new javax.swing.JTextField();
+        txtMatricula = new javax.swing.JTextField();
+        lblMatricula = new javax.swing.JLabel();
+        jbcCurso = new javax.swing.JComboBox<>();
+        lblCurso = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        lblNome = new javax.swing.JLabel();
 
         lblAluno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblAluno.setForeground(new java.awt.Color(51, 153, 255));
         lblAluno.setText("Aluno");
-
-        lblNome.setText("Nome");
-
-        lblCpf.setText("CPF");
-
-        lblCidade.setText("Cidade");
-
-        lblEmail.setText("E-mail");
-
-        lblCel.setText("Celular");
-
-        try {
-            txtCel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         btnOk.setBackground(new java.awt.Color(51, 153, 255));
         btnOk.setForeground(new java.awt.Color(255, 255, 255));
@@ -71,95 +53,94 @@ public class alunosEditor extends javax.swing.JDialog {
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-error.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
 
-        try {
-            txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###.-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtCpf.setToolTipText("");
+        txtMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMatriculaActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        lblMatricula.setText("Matrícula");
+
+        jbcCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        lblCurso.setText("Curso");
+
+        lblEmail.setText("E-mail");
+
+        lblNome.setText("Nome");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblCpf)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtCpf))
-                        .addComponent(lblAluno)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblNome)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblCidade)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtCidade))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblEmail)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtEmail))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblCel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtCel)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnOk)
-                        .addGap(45, 45, 45)
-                        .addComponent(btnCancelar)))
-                .addContainerGap(167, Short.MAX_VALUE))
+                        .addComponent(lblNome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblEmail)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtEmail))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMatricula)
+                            .addComponent(lblAluno)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnOk)
+                                .addGap(45, 45, 45)
+                                .addComponent(btnCancelar))
+                            .addComponent(lblCurso)
+                            .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbcCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 157, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblAluno)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblMatricula)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCpf)
-                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCidade)
-                    .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEmail)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCel)
-                    .addComponent(txtCel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addComponent(lblCurso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbcCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOk)
                     .addComponent(btnCancelar))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatriculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMatriculaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnOk;
+    private javax.swing.JComboBox<String> jbcCurso;
     private javax.swing.JLabel lblAluno;
-    private javax.swing.JLabel lblCel;
-    private javax.swing.JLabel lblCidade;
-    private javax.swing.JLabel lblCpf;
+    private javax.swing.JLabel lblCurso;
     private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblMatricula;
     private javax.swing.JLabel lblNome;
-    private javax.swing.JFormattedTextField txtCel;
-    private javax.swing.JTextField txtCidade;
-    private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtMatricula;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
