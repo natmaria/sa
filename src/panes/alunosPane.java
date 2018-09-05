@@ -22,6 +22,10 @@ Usuario user;
     public alunosPane(Usuario user) {
         initComponents();
         this.user = user;
+        
+        //carregar alunos
+        alunosPaneController alunosCon = new alunosPaneController(null, jtbAlunos);
+        alunosCon.mostrarAlunos();
     }
 
     /**

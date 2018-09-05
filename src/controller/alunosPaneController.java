@@ -5,12 +5,16 @@
  */
 package controller;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import model.Aluno;
 import model.Usuario;
 import sys.ConnectionFactory;
@@ -38,10 +42,10 @@ public class alunosPaneController {
         try
         {
             String SQL = "";
-            SQL = " SELECT id, curso, nome ";
-            SQL+=" FROM alunos ";
-            SQL+=" WHERE COALESCE{dataExclusao,''} = '' ";
-            SQL+= " ORDER BY nome DESC ";
+            SQL = " SELECT mat_aluno, c.nom_curso, nom_aluno ";
+            SQL+=" FROM alunos a, cursos c";
+            SQL+=" WHERE a.cod_curso=c.cod_curso ";
+            SQL+= " ORDER BY nom_aluno ";
             
             result = ConnectionFactory.stmt.executeQuery(SQL);
             
@@ -51,11 +55,53 @@ public class alunosPaneController {
                 linha.add(result.getString(2));
                 dadosTabela.add(linha);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("problema ao popular tabela");
             System.out.println(e);
         }
-
+        jtbAlunos.setModel(new DefaultTableModel(dadosTabela, cabecalhos) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+    });
+        
+        jtbAlunos.setSelectionMode(0);
+        
+        TableColumn column = null;
+        for (int i=0; i<3; i++) 
+        {
+            column = jtbAlunos.getColumnModel().getColumn(i);
+            switch (i)
+            {
+                case 0:
+                    column.setPreferredWidth(80);
+                    break;
+                case 1:
+                    column.setPreferredWidth(200);
+                    break;
+                case 2:
+                    column.setPreferredWidth(150);
+                    break;
+            }
+        }
+        
+        jtbAlunos.setDefaultRenderer(Object.class, new DefaultTableCellRenderer()
+        {
+            public Component getTableCellReComponent(JTable table, Object value, 
+                    boolean isSelected, boolean hasFocus, int row, int column)
+            {
+                super.getTableCellRendererComponent(table, value, isSelected,
+                        hasFocus, row, column);
+                if (row % 2 == 0)
+                {
+                    setBackground(Color.LIGHT_GRAY);
+                } else 
+                {
+                    setBackground(Color.WHITE);
+                }
+                return this;
+            }
+        });
    }
 
 }
