@@ -32,11 +32,11 @@ public class alunosPaneController {
     }
     public void mostrarAlunos() {
         ConnectionFactory.abreConexao();
-        Vector<String> cabecalhos = new Vector<String>();
-        Vector dadosTabela = new Vector();
-        cabecalhos.add("Código");
-        cabecalhos.add("Curso");
-        cabecalhos.add("Nome");
+//        Vector<String> cabecalhos = new Vector<String>();
+//        Vector dadosTabela = new Vector();
+//        cabecalhos.add("Código");
+//        cabecalhos.add("Curso");
+//        cabecalhos.add("Nome");
         
         ResultSet result = null;
         try
@@ -48,22 +48,19 @@ public class alunosPaneController {
             SQL+= " ORDER BY nom_aluno ";
             
             result = ConnectionFactory.stmt.executeQuery(SQL);
-            
+            DefaultTableModel model = (DefaultTableModel)jtbAlunos.getModel();
+            model.setRowCount(0);
             while (result.next()) {
-                Vector<Object> linha = new Vector<Object>();
-                linha.add(result.getInt(1));
-                linha.add(result.getString(2));
-                dadosTabela.add(linha);
+                Object linha [] = 
+                {
+                    result.getString("a.mat_aluno"),result.getString("c.nom_curso"),result.getString("a.nom_aluno") 
+                };
+                model.addRow(linha);
             }
         } catch (SQLException e) {
             System.out.println("problema ao popular tabela");
             System.out.println(e);
         }
-        jtbAlunos.setModel(new DefaultTableModel(dadosTabela, cabecalhos) {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-    });
         
         jtbAlunos.setSelectionMode(0);
         
