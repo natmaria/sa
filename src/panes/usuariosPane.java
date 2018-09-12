@@ -5,6 +5,7 @@
  */
 package panes;
 
+import controller.usuariosPaneController;
 import editors.usuariosEditor;
 import sys.Principal;
 
@@ -19,6 +20,9 @@ public class usuariosPane extends javax.swing.JFrame {
      */
     public usuariosPane() {
         initComponents();
+         //carregar alunos
+        usuariosPaneController usuariosCon = new usuariosPaneController(null, jtbUsuarios);
+        usuariosCon.mostrarUsuarios();
     }
 
     /**

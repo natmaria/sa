@@ -5,6 +5,8 @@
  */
 package editors;
 
+import controller.usuarioEditorController;
+import model.Usuario;
 import panes.usuariosPane;
 
 /**
@@ -34,14 +36,14 @@ public class usuariosEditor extends javax.swing.JFrame {
         lblUsuario = new javax.swing.JLabel();
         btnOk = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        txtLogin = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
-        txtMatricula = new javax.swing.JTextField();
-        lblnome = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblLogin.setText("Nome");
+        lblLogin.setText("Login");
 
         lblUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(51, 153, 255));
@@ -51,6 +53,11 @@ public class usuariosEditor extends javax.swing.JFrame {
         btnOk.setForeground(new java.awt.Color(255, 255, 255));
         btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-check.png"))); // NOI18N
         btnOk.setText("OK");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setBackground(new java.awt.Color(51, 153, 255));
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -62,7 +69,7 @@ public class usuariosEditor extends javax.swing.JFrame {
             }
         });
 
-        lblnome.setText("Nome");
+        lblNome.setText("Nome");
 
         lblSenha.setText("Senha");
 
@@ -80,7 +87,7 @@ public class usuariosEditor extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblnome)
+                                .addComponent(lblNome)
                                 .addGap(99, 99, 99)
                                 .addComponent(lblLogin))
                             .addComponent(lblUsuario)
@@ -89,9 +96,9 @@ public class usuariosEditor extends javax.swing.JFrame {
                                 .addGap(45, 45, 45)
                                 .addComponent(btnCancelar))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(33, 33, 33)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 25, Short.MAX_VALUE)))
                 .addContainerGap(119, Short.MAX_VALUE))
         );
@@ -102,12 +109,12 @@ public class usuariosEditor extends javax.swing.JFrame {
                 .addComponent(lblUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblnome)
+                    .addComponent(lblNome)
                     .addComponent(lblLogin))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSenha)
@@ -129,15 +136,30 @@ public class usuariosEditor extends javax.swing.JFrame {
         usuarios.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        // TODO add your handling code here:
+        Usuario objUsuario = new Usuario();
+        objUsuario.setNome(txtNome.getText());
+        objUsuario.setLogin(txtLogin.getText());
+        objUsuario.setSenha(txtSenha.getText());
+        
+        usuarioEditorController usuarioCon = new usuarioEditorController();
+        usuarioCon.incluirUsuario(objUsuario);
+        
+        this.dispose();
+        usuariosPane usuarios = new usuariosPane();
+        usuarios.setVisible(true);
+    }//GEN-LAST:event_btnOkActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnOk;
     private javax.swing.JLabel lblLogin;
+    private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblUsuario;
-    private javax.swing.JLabel lblnome;
-    private javax.swing.JTextField txtMatricula;
+    private javax.swing.JTextField txtLogin;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
