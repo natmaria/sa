@@ -5,21 +5,22 @@
  */
 package sys;
 
+import editors.usuariosEditor;
 import model.Usuario;
 import panes.alunosPane;
+import panes.usuariosPane;
 
 /**
  *
  * @author Usuario
  */
 public class Principal extends javax.swing.JFrame {
-Usuario user;
+
     /**
      * Creates new form Principal
      */
-    public Principal(Usuario user) {
+    public Principal() {
         initComponents();
-        this.user = user;
     }
 
     /**
@@ -34,6 +35,7 @@ Usuario user;
         jMenuBar1 = new javax.swing.JMenuBar();
         btnCadastros = new javax.swing.JMenu();
         btnAlunosPane = new javax.swing.JMenuItem();
+        btnUsuariosPane = new javax.swing.JMenuItem();
         btnSistema = new javax.swing.JMenu();
         btnSobre = new javax.swing.JMenuItem();
         btnSair = new javax.swing.JMenuItem();
@@ -50,6 +52,14 @@ Usuario user;
             }
         });
         btnCadastros.add(btnAlunosPane);
+
+        btnUsuariosPane.setText("Usuário");
+        btnUsuariosPane.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuariosPaneActionPerformed(evt);
+            }
+        });
+        btnCadastros.add(btnUsuariosPane);
 
         jMenuBar1.add(btnCadastros);
 
@@ -91,10 +101,17 @@ Usuario user;
 
     private void btnAlunosPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlunosPaneActionPerformed
         // TODO add your handling code here:
-        alunosPane alunos = new alunosPane(user);
+        alunosPane alunos = new alunosPane();
         alunos.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAlunosPaneActionPerformed
+
+    private void btnUsuariosPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosPaneActionPerformed
+        // TODO add your handling code here:
+        usuariosPane usuarios = new usuariosPane();
+        usuarios.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnUsuariosPaneActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -103,6 +120,7 @@ Usuario user;
     private javax.swing.JMenuItem btnSair;
     private javax.swing.JMenu btnSistema;
     private javax.swing.JMenuItem btnSobre;
+    private javax.swing.JMenuItem btnUsuariosPane;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

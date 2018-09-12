@@ -5,17 +5,49 @@
  */
 package editors;
 
+import controller.alunoEditorController;
+import java.sql.SQLException;
+import model.Aluno;
+import model.Usuario;
+import panes.alunosPane;
+import sys.login;
+import tools.Combos;
+
 /**
  *
- * @author nmp
+ * @author nmpetry
  */
-public class alunosEditor extends javax.swing.JDialog {
+public class alunoEditor extends javax.swing.JFrame {
+
+    Combos objComboCurso;
+    Aluno alunoObj;
 
     /**
-     * Creates new form alunosEditor
+     * Creates new form alunoEditor
      */
-    public alunosEditor() {
+    public alunoEditor(Aluno alunoObj) {
         initComponents();
+        this.alunoObj = alunoObj;
+        
+        try 
+        {
+            //Preenchimento com dados do banco
+            //Utilizar o campo chave e a descrição que você quer que apareça dentro do componente
+            //Exemplo:
+            objComboCurso = new Combos(jcbCurso);
+            objComboCurso.PreencheCombo("SELECT cod_curso, nom_curso FROM cursos ORDER BY nom_curso");
+
+            
+            if (alunoObj != null) {
+                txtMatricula.setText(String.valueOf(alunoObj.getMat_aluno()));
+                txtNome.setText(alunoObj.getNom_aluno());
+                txtEmail.setText(alunoObj.getEmail());
+                objComboCurso.SetaComboBox(String.valueOf(alunoObj.getCod_curso()));
+            }
+            
+        }catch (SQLException e) {
+            System.out.println("Erro ao preencher combobox");
+        }
     }
 
     /**
@@ -27,17 +59,39 @@ public class alunosEditor extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblAluno = new javax.swing.JLabel();
-        btnOk = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         txtNome = new javax.swing.JTextField();
         txtMatricula = new javax.swing.JTextField();
         lblMatricula = new javax.swing.JLabel();
-        jbcCurso = new javax.swing.JComboBox<>();
+        jcbCurso = new javax.swing.JComboBox<>();
         lblCurso = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         lblNome = new javax.swing.JLabel();
+        lblAluno = new javax.swing.JLabel();
+        btnOk = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+
+        btnCancelar.setBackground(new java.awt.Color(51, 153, 255));
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-error.png"))); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        lblMatricula.setText("Matrícula");
+
+        jcbCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        lblCurso.setText("Curso");
+
+        lblEmail.setText("E-mail");
+
+        lblNome.setText("Nome");
 
         lblAluno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblAluno.setForeground(new java.awt.Color(51, 153, 255));
@@ -48,27 +102,6 @@ public class alunosEditor extends javax.swing.JDialog {
         btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-check.png"))); // NOI18N
         btnOk.setText("OK");
 
-        btnCancelar.setBackground(new java.awt.Color(51, 153, 255));
-        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-error.png"))); // NOI18N
-        btnCancelar.setText("Cancelar");
-
-        txtMatricula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMatriculaActionPerformed(evt);
-            }
-        });
-
-        lblMatricula.setText("Matrícula");
-
-        jbcCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        lblCurso.setText("Curso");
-
-        lblEmail.setText("E-mail");
-
-        lblNome.setText("Nome");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -76,27 +109,25 @@ public class alunosEditor extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jcbCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblNome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(lblEmail)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtEmail))
+                    .addComponent(lblMatricula)
+                    .addComponent(lblAluno)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMatricula)
-                            .addComponent(lblAluno)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnOk)
-                                .addGap(45, 45, 45)
-                                .addComponent(btnCancelar))
-                            .addComponent(lblCurso)
-                            .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbcCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 157, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(btnOk)
+                        .addGap(45, 45, 45)
+                        .addComponent(btnCancelar))
+                    .addComponent(lblCurso)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(lblNome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,34 +137,39 @@ public class alunosEditor extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMatricula)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNome))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEmail)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblCurso)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbcCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jcbCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOk)
                     .addComponent(btnCancelar))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatriculaActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMatriculaActionPerformed
-
+        this.dispose();
+        alunosPane alunos = new alunosPane();
+        alunos.setVisible(true);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnOk;
-    private javax.swing.JComboBox<String> jbcCurso;
+    private javax.swing.JComboBox<String> jcbCurso;
     private javax.swing.JLabel lblAluno;
     private javax.swing.JLabel lblCurso;
     private javax.swing.JLabel lblEmail;

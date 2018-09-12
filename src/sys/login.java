@@ -17,6 +17,7 @@ import model.Usuario;
  */
 public class login extends javax.swing.JFrame {
 
+    public static Usuario usuarioLogin;
     /**
      * Creates new form login
      */
@@ -111,13 +112,13 @@ public class login extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        Usuario user = null;
         loginController login = new loginController();
-        login.login(txtUsuario.getText().trim(), txtSenha.getText().trim());
-        if (user == null) {
+        usuarioLogin = login.login(txtUsuario.getText().trim(), txtSenha.getText().trim());
+        
+        if (usuarioLogin == null) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário inválido!", "ERRO", 'e');
         } else {
-            Principal tela = new Principal (user);
+            Principal tela = new Principal();
             tela.setVisible(true);
             dispose();
         }

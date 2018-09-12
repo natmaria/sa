@@ -5,29 +5,20 @@
  */
 package panes;
 
-import controller.alunoEditorController;
-import controller.alunosPaneController;
-import editors.alunoEditor;
-import model.Aluno;
-import model.Usuario;
+import editors.usuariosEditor;
 import sys.Principal;
 
 /**
  *
- * @author nmp
+ * @author nmpetry
  */
-public class alunosPane extends javax.swing.JFrame {
-String codigo = "";
+public class usuariosPane extends javax.swing.JFrame {
 
     /**
-     * Creates new form alunosPane
+     * Creates new form usuariosPane
      */
-    public alunosPane() {
+    public usuariosPane() {
         initComponents();
-        
-        //carregar alunos
-        alunosPaneController alunosCon = new alunosPaneController(null, jtbAlunos);
-        alunosCon.mostrarAlunos();
     }
 
     /**
@@ -39,16 +30,19 @@ String codigo = "";
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblAluno = new javax.swing.JLabel();
         btnNovo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtbAlunos = new javax.swing.JTable();
-        lblAluno = new javax.swing.JLabel();
-        lblAluno1 = new javax.swing.JLabel();
+        jtbUsuarios = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblAluno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblAluno.setForeground(new java.awt.Color(51, 153, 255));
+        lblAluno.setText("Usuários");
 
         btnNovo.setBackground(new java.awt.Color(51, 153, 255));
         btnNovo.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,7 +79,7 @@ String codigo = "";
             }
         });
 
-        jtbAlunos.setModel(new javax.swing.table.DefaultTableModel(
+        jtbUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -104,20 +98,7 @@ String codigo = "";
                 return canEdit [columnIndex];
             }
         });
-        jtbAlunos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtbAlunosMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jtbAlunos);
-
-        lblAluno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblAluno.setForeground(new java.awt.Color(51, 153, 255));
-        lblAluno.setText("Aluno");
-
-        lblAluno1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblAluno1.setForeground(new java.awt.Color(51, 153, 255));
-        lblAluno1.setText("Alunos");
+        jScrollPane1.setViewportView(jtbUsuarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,65 +107,56 @@ String codigo = "";
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblAluno)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnNovo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(26, 26, 26)
                         .addComponent(btnEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
-                        .addComponent(btnVoltar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAluno1))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVoltar)))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(lblAluno)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(lblAluno1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblAluno)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
                     .addComponent(btnEditar)
                     .addComponent(btnExcluir)
                     .addComponent(btnVoltar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(lblAluno)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-        alunoEditorController editorController = new alunoEditorController();
-        Aluno alunoObj = editorController.buscar(codigo);
-        
-        alunoEditor editor = new alunoEditor(alunoObj);
-        editor.setVisible(true);
-    }//GEN-LAST:event_btnEditarActionPerformed
-
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        alunoEditor editor = new alunoEditor(null);
+        usuariosEditor editor = new usuariosEditor();
         editor.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+//        alunoEditorController editorController = new alunoEditorController();
+//        Aluno alunoObj = editorController.buscar(codigo);
+//
+//        alunoEditor editor = new alunoEditor(alunoObj);
+//        editor.setVisible(true);
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:
@@ -193,14 +165,6 @@ String codigo = "";
         menu.setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void jtbAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbAlunosMouseClicked
-        // TODO add your handling code here:
-        int linha = jtbAlunos.getSelectedRow();
-        codigo = jtbAlunos.getModel().getValueAt(linha, 0).toString();
-        System.out.println(codigo);
-    }//GEN-LAST:event_jtbAlunosMouseClicked
-
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
@@ -208,8 +172,7 @@ String codigo = "";
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtbAlunos;
+    private javax.swing.JTable jtbUsuarios;
     private javax.swing.JLabel lblAluno;
-    private javax.swing.JLabel lblAluno1;
     // End of variables declaration//GEN-END:variables
 }
