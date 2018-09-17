@@ -15,10 +15,12 @@ import sys.ConnectionFactory;
  *
  * @author nmpetry
  */
-public class loginController {
+public class loginController 
+{
     String usuario;
     String senha;
-    public Usuario login(String usuario, String senha) {
+    public Usuario login(String usuario, String senha) 
+    {
         this.usuario = usuario;
         this.senha = senha;
         //INÍCIO CONEXÃO COM O BANCO DE DADOS
@@ -33,7 +35,8 @@ public class loginController {
         comandoSQL.append(" FROM usuarios ");
         comandoSQL.append(" WHERE login ='" + usuario +"'" );
         comandoSQL.append(" AND senha ='" + senha + "'" );
-        try {
+        try 
+        {
             System.out.println("Vai Executar Conexão em buscar area");
             rs = ConnectionFactory.stmt.executeQuery(comandoSQL.toString());
             System.out.println("Executou Conexão em buscar area");
@@ -43,10 +46,14 @@ public class loginController {
                 user.setLogin(rs.getString("login"));
                 user.setNome(rs.getString("nome"));
             }
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) 
+        {
             System.out.println("ERRO de SQL: " + ex.getMessage().toString());
             return user;
-        }finally{
+        }
+        finally
+        {
             Connection con = ConnectionFactory.getConnection();
             System.out.println("Vai fechar a conexão com o banco de dados");
             ConnectionFactory.closeConnection(con);

@@ -14,7 +14,8 @@ import sys.ConnectionFactory;
  *
  * @author nmpetry
  */
-public class alunoEditorController {
+public class alunoEditorController 
+{
    static Aluno objAluno;
     
     public  static Aluno buscar(String id)
@@ -29,7 +30,8 @@ public class alunoEditorController {
             SQL += " WHERE mat_alu = '" + id + "'";
             //stm.executeQuery(SQL);
 
-            try{
+            try
+            {
                 System.out.println("Vai Executar Conexão em buscar visitante");
                 rs = ConnectionFactory.stmt.executeQuery(SQL);
                 System.out.println("Executou Conexão em buscar visitante");

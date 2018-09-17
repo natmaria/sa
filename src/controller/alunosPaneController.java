@@ -23,15 +23,18 @@ import sys.ConnectionFactory;
  *
  * @author nmp
  */
-public class alunosPaneController {
+public class alunosPaneController 
+{
     Aluno objAluno;
     JTable jtbAlunos = null;
     
-    public alunosPaneController (Aluno objAluno, JTable jtbAlunos) {
+    public alunosPaneController (Aluno objAluno, JTable jtbAlunos) 
+    {
         this.objAluno = objAluno;
         this.jtbAlunos = jtbAlunos;
     }
-    public void mostrarAlunos() {
+    public void mostrarAlunos() 
+    {
         ConnectionFactory.abreConexao();
         Vector<String> cabecalhos = new Vector<String>();
         Vector dadosTabela = new Vector();
@@ -49,24 +52,32 @@ public class alunosPaneController {
             SQL+= " ORDER BY nom_alu ";
             result = ConnectionFactory.stmt.executeQuery(SQL);
             
-            while (result.next()) {
+            while (result.next()) 
+            {
               Vector<Object> linha = new Vector<Object>();
               linha.add(result.getInt(1));
               linha.add(result.getString(2));
               linha.add(result.getString(3));
               dadosTabela.add(linha);
             }
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) 
+        {
             System.out.println("problema ao popular tabela");
             System.out.println(e);
         }
         
-        jtbAlunos.setModel(new DefaultTableModel(dadosTabela,cabecalhos) {
+        jtbAlunos.setModel
+        (
+                new DefaultTableModel(dadosTabela,cabecalhos) 
+                {
         @Override
-        public boolean isCellEditable(int row, int column) {
+        public boolean isCellEditable(int row, int column) 
+        {
             return false;
         }
-    });
+                }
+        );
     
         jtbAlunos.setSelectionMode(0);
         
@@ -88,7 +99,9 @@ public class alunosPaneController {
             }
         }
         
-        jtbAlunos.setDefaultRenderer(Object.class, new DefaultTableCellRenderer()
+        jtbAlunos.setDefaultRenderer
+        (
+        Object.class, new DefaultTableCellRenderer()
         {
             public Component getTableCellReComponent(JTable table, Object value, 
                     boolean isSelected, boolean hasFocus, int row, int column)
@@ -104,7 +117,8 @@ public class alunosPaneController {
                 }
                 return this;
             }
-        });
+        }
+        );
    }
     
 }

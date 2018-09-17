@@ -110,7 +110,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         usuariosPane usuarios = new usuariosPane();
         usuarios.setVisible(true);
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_btnUsuariosPaneActionPerformed
 
 

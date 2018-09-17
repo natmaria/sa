@@ -13,13 +13,16 @@ import panes.usuariosPane;
  *
  * @author nmpetry
  */
-public class usuariosEditor extends javax.swing.JFrame {
-
+public class usuariosEditor extends javax.swing.JFrame 
+{
+ Usuario usuarioObj;
     /**
      * Creates new form usuariosEditor
      */
-    public usuariosEditor() {
+    public usuariosEditor(Usuario usuarioObj) 
+    {
         initComponents();
+        this.usuarioObj=usuarioObj;
     }
 
     /**
@@ -145,10 +148,9 @@ public class usuariosEditor extends javax.swing.JFrame {
         
         usuarioEditorController usuarioCon = new usuarioEditorController();
         usuarioCon.incluirUsuario(objUsuario);
-        
-        this.dispose();
-        usuariosPane usuarios = new usuariosPane();
-        usuarios.setVisible(true);
+            this.dispose();
+            usuariosPane usuarios = new usuariosPane();
+            usuarios.setVisible(true);
     }//GEN-LAST:event_btnOkActionPerformed
 
 

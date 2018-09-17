@@ -5,20 +5,26 @@
  */
 package panes;
 
+import controller.alunoEditorController;
+import controller.usuarioEditorController;
 import controller.usuariosPaneController;
 import editors.usuariosEditor;
+import model.Usuario;
 import sys.Principal;
 
 /**
  *
  * @author nmpetry
  */
-public class usuariosPane extends javax.swing.JFrame {
+public class usuariosPane extends javax.swing.JFrame 
+{
+    String login = "";
 
     /**
      * Creates new form usuariosPane
      */
-    public usuariosPane() {
+    public usuariosPane() 
+    {
         initComponents();
          //carregar alunos
         usuariosPaneController usuariosCon = new usuariosPaneController(null, jtbUsuarios);
@@ -149,17 +155,17 @@ public class usuariosPane extends javax.swing.JFrame {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        usuariosEditor editor = new usuariosEditor();
+        usuariosEditor editor = new usuariosEditor(null);
         editor.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-//        alunoEditorController editorController = new alunoEditorController();
-//        Aluno alunoObj = editorController.buscar(codigo);
-//
-//        alunoEditor editor = new alunoEditor(alunoObj);
-//        editor.setVisible(true);
+        usuarioEditorController editorController = new usuarioEditorController();
+        Usuario usuarioObj = editorController.buscar(login);
+
+        usuariosEditor editor = new usuariosEditor(usuarioObj);
+        editor.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

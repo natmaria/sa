@@ -7,6 +7,7 @@ package controller;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.Usuario;
 import sys.ConnectionFactory;
@@ -15,15 +16,64 @@ import sys.ConnectionFactory;
  *
  * @author nmp
  */
-public class usuarioEditorController {
+public class usuarioEditorController 
+{
+    static Usuario objUsuario;
     
-    public boolean incluirUsuario(Usuario objUsuario){
+    public  static Usuario buscar(String login)
+    {
+        try {
+            ConnectionFactory.abreConexao();
+            ResultSet rs = null;
+
+            String SQL = "";
+            SQL = " SELECT nome, login, senha ";
+            SQL += " FROM usuarios ";
+            SQL += " WHERE login = '" + login + "'";
+            //stm.executeQuery(SQL);
+
+            try
+            {
+                System.out.println("Vai Executar Conexão em buscar visitante");
+                rs = ConnectionFactory.stmt.executeQuery(SQL);
+                System.out.println("Executou Conexão em buscar visitante");
+
+                objUsuario= new Usuario();
+                
+                if(rs.next() == true)
+                {
+                    objUsuario.setNome(rs.getString(1));
+                    objUsuario.setLogin(rs.getString(2));
+                    objUsuario.setSenha(rs.getString(3));
+                }
+            }
+            catch (SQLException ex )
+            {
+                System.out.println("ERRO de SQL: " + ex.getMessage().toString());
+                return null;
+            }
+
+        } 
+        catch (Exception e) 
+        {
+            System.out.println("ERRO: " + e.getMessage().toString());
+            return null;
+        }
+        
+        System.out.println ("Executou buscar aluno com sucesso");
+        return objUsuario;
+    }
+    
+    public boolean incluirUsuario(Usuario objUsuario)
+    {
+        this.objUsuario=objUsuario;
         
         ConnectionFactory.abreConexao();
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         
-        try {
+        try 
+        {
             stmt = con.prepareStatement("INSERT INTO usuarios (nome, login, senha)VALUES(?,?,?)");
             stmt.setString(1, objUsuario.getNome());
             stmt.setString(2, objUsuario.getLogin());
@@ -33,12 +83,15 @@ public class usuarioEditorController {
             
             return true;
             
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) 
+        {
             System.out.println(ex.getMessage());
             return false;
-        }finally{
-            ConnectionFactory.closeConnection(con, stmt);
         }
-        
+        finally
+        {
+            ConnectionFactory.closeConnection(con, stmt);
+        } 
     }
 }

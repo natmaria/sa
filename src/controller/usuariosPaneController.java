@@ -22,16 +22,19 @@ import sys.ConnectionFactory;
  *
  * @author nmp
  */
-public class usuariosPaneController {
+public class usuariosPaneController 
+{
     Usuario objUsuario;
     JTable jtbUsuarios = null;
     
-      public usuariosPaneController (Usuario objUsuario, JTable jtbUsuarios) {
+      public usuariosPaneController (Usuario objUsuario, JTable jtbUsuarios) 
+      {
         this.objUsuario = objUsuario;
         this.jtbUsuarios = jtbUsuarios;
-    }
+      }
       
-      public void mostrarUsuarios() {
+      public void mostrarUsuarios() 
+      {
         ConnectionFactory.abreConexao();
         Vector<String> cabecalhos = new Vector<String>();
         Vector dadosTabela = new Vector();
@@ -47,28 +50,36 @@ public class usuariosPaneController {
             SQL+= " ORDER BY nome ";
             result = ConnectionFactory.stmt.executeQuery(SQL);
             
-            while (result.next()) {
+            while (result.next()) 
+            {
               Vector<Object> linha = new Vector<Object>();
               linha.add(result.getString(1));
               linha.add(result.getString(2));
               dadosTabela.add(linha);
             }
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) 
+        {
             System.out.println("problema ao popular tabela");
             System.out.println(e);
         }
         
-        jtbUsuarios.setModel(new DefaultTableModel(dadosTabela,cabecalhos) {
+        jtbUsuarios.setModel
+        (
+            new DefaultTableModel(dadosTabela,cabecalhos) 
+         {
         @Override
-        public boolean isCellEditable(int row, int column) {
+        public boolean isCellEditable(int row, int column) 
+        {
             return false;
         }
-    });
+         }
+        );
     
         jtbUsuarios.setSelectionMode(0);
         
         TableColumn column = null;
-        for (int i=0; i<3; i++) 
+        for (int i=0; i<2; i++) 
         {
             column = jtbUsuarios.getColumnModel().getColumn(i);
             switch (i)
@@ -82,8 +93,10 @@ public class usuariosPaneController {
             }
         }
         
-        jtbUsuarios.setDefaultRenderer(Object.class, new DefaultTableCellRenderer()
-        {
+        jtbUsuarios.setDefaultRenderer
+        (
+          Object.class, new DefaultTableCellRenderer()
+         {
             public Component getTableCellReComponent(JTable table, Object value, 
                     boolean isSelected, boolean hasFocus, int row, int column)
             {
@@ -98,6 +111,7 @@ public class usuariosPaneController {
                 }
                 return this;
             }
-        });
+          }
+        );
     }
 }
