@@ -34,9 +34,9 @@ public class usuarioEditorController
 
             try
             {
-                System.out.println("Vai Executar Conexão em buscar visitante");
+                System.out.println("Vai Executar Conexão em buscar usuário");
                 rs = ConnectionFactory.stmt.executeQuery(SQL);
-                System.out.println("Executou Conexão em buscar visitante");
+                System.out.println("Executou Conexão em buscar usuário");
 
                 objUsuario= new Usuario();
                 

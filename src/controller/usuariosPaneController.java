@@ -38,14 +38,14 @@ public class usuariosPaneController
         ConnectionFactory.abreConexao();
         Vector<String> cabecalhos = new Vector<String>();
         Vector dadosTabela = new Vector();
-        cabecalhos.add("Nome");
         cabecalhos.add("Login");
+        cabecalhos.add("Nome");
         
         ResultSet result = null;
         try
         {
             String SQL = "";
-            SQL = " SELECT nome, login ";
+            SQL = " SELECT login, nome ";
             SQL+=" FROM usuarios ";
             SQL+= " ORDER BY nome ";
             result = ConnectionFactory.stmt.executeQuery(SQL);
@@ -85,10 +85,10 @@ public class usuariosPaneController
             switch (i)
             {
                 case 0:
-                    column.setPreferredWidth(200);
+                    column.setPreferredWidth(100);
                     break;
                 case 1:
-                    column.setPreferredWidth(100);
+                    column.setPreferredWidth(150);
                     break;
             }
         }

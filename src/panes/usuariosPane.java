@@ -43,7 +43,6 @@ public class usuariosPane extends javax.swing.JFrame
         lblAluno = new javax.swing.JLabel();
         btnNovo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbUsuarios = new javax.swing.JTable();
@@ -74,11 +73,6 @@ public class usuariosPane extends javax.swing.JFrame
             }
         });
 
-        btnExcluir.setBackground(new java.awt.Color(51, 153, 255));
-        btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
-        btnExcluir.setText("Excluir");
-        btnExcluir.setBorderPainted(false);
-
         btnVoltar.setBackground(new java.awt.Color(51, 153, 255));
         btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
         btnVoltar.setText("Voltar");
@@ -108,6 +102,11 @@ public class usuariosPane extends javax.swing.JFrame
                 return canEdit [columnIndex];
             }
         });
+        jtbUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtbUsuariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtbUsuarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -127,8 +126,6 @@ public class usuariosPane extends javax.swing.JFrame
                         .addComponent(btnNovo)
                         .addGap(26, 26, 26)
                         .addComponent(btnEditar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVoltar)))
                 .addContainerGap())
@@ -144,7 +141,6 @@ public class usuariosPane extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
                     .addComponent(btnEditar)
-                    .addComponent(btnExcluir)
                     .addComponent(btnVoltar))
                 .addGap(20, 20, 20))
         );
@@ -170,15 +166,21 @@ public class usuariosPane extends javax.swing.JFrame
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:
-        this.dispose();
         Principal menu = new Principal();
         menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void jtbUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbUsuariosMouseClicked
+        // TODO add your handling code here:
+        int linha = jtbUsuarios.getSelectedRow();
+        login = jtbUsuarios.getModel().getValueAt(linha, 0).toString();
+        System.out.println("\n"+login);
+    }//GEN-LAST:event_jtbUsuariosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;

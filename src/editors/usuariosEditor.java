@@ -23,6 +23,20 @@ public class usuariosEditor extends javax.swing.JFrame
     {
         initComponents();
         this.usuarioObj=usuarioObj;
+        
+        try
+        {
+         if (usuarioObj != null)
+         {
+        txtLogin.setText(usuarioObj.getLogin());
+        txtNome.setText(usuarioObj.getNome());
+        txtSenha.setText(usuarioObj.getSenha());
+         }
+        }
+        catch (Exception e)
+        {
+            System.out.println("Erro ao puxar dados do usuário \n" + e);
+        }
     }
 
     /**
@@ -43,6 +57,7 @@ public class usuariosEditor extends javax.swing.JFrame
         txtNome = new javax.swing.JTextField();
         lblNome = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
+        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,7 +79,7 @@ public class usuariosEditor extends javax.swing.JFrame
 
         btnCancelar.setBackground(new java.awt.Color(51, 153, 255));
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-error.png"))); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-left.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +90,12 @@ public class usuariosEditor extends javax.swing.JFrame
         lblNome.setText("Nome");
 
         lblSenha.setText("Senha");
+
+        btnExcluir.setBackground(new java.awt.Color(51, 153, 255));
+        btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-delete.png"))); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.setBorderPainted(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,14 +117,16 @@ public class usuariosEditor extends javax.swing.JFrame
                             .addComponent(lblUsuario)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnOk)
-                                .addGap(45, 45, 45)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnCancelar))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(33, 33, 33)
                                 .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 25, Short.MAX_VALUE)))
-                .addContainerGap(119, Short.MAX_VALUE))
+                        .addGap(0, 11, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(btnExcluir)
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +148,8 @@ public class usuariosEditor extends javax.swing.JFrame
                 .addGap(100, 100, 100)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOk)
-                    .addComponent(btnCancelar))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnExcluir))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
@@ -156,6 +180,7 @@ public class usuariosEditor extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnOk;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblNome;

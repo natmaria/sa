@@ -5,9 +5,12 @@
  */
 package controller;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.Aluno;
+import model.Usuario;
 import sys.ConnectionFactory;
 
 /**
@@ -60,5 +63,36 @@ public class alunoEditorController
         
         System.out.println ("Executou buscar aluno com sucesso");
         return objAluno;
+    }
+    
+    public boolean incluirAluno(Aluno objAluno)
+    {
+        this.objAluno=objAluno;
+        
+        ConnectionFactory.abreConexao();
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        
+        try 
+        {
+            stmt = con.prepareStatement("INSERT INTO alunos (mat_alu, nom_alu, email, cod_curso)VALUES(?,?,?,?)");
+            stmt.setInt(1, objAluno.getMat_aluno());
+            stmt.setString(2, objAluno.getNom_aluno());
+            stmt.setString(3, objAluno.getEmail());
+            stmt.setInt(4, objAluno.getCod_curso());
+            stmt.executeUpdate();
+            
+            return true;
+            
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+        finally
+        {
+            ConnectionFactory.closeConnection(con, stmt);
+        } 
     }
 }
