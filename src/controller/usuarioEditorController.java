@@ -5,6 +5,7 @@
  */
 package controller;
 
+import static controller.alunoEditorController.objAluno;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -94,4 +95,34 @@ public class usuarioEditorController
             ConnectionFactory.closeConnection(con, stmt);
         } 
     }
+    
+    public boolean alterar(Usuario objUsuario)
+    {
+ 
+    ConnectionFactory.abreConexao();
+    Connection con = ConnectionFactory.getConnection();
+    PreparedStatement stmt = null;
+ 
+    try 
+    {
+        stmt = con.prepareStatement("UPDATE usuarios SET nome=?, senha=? WHERE login=?");
+        stmt.setString(1, objUsuario.getNome());
+        stmt.setString(2, objUsuario.getSenha());
+        stmt.setString(3, objUsuario.getLogin());
+ 
+        stmt.executeUpdate();
+ 
+        return true;
+ 
+        } 
+    catch (SQLException ex) 
+    {
+        System.out.println(ex.getMessage());
+        return false;
+    }
+    finally
+    {
+    ConnectionFactory.closeConnection(con, stmt);
+    }
+ }
 }

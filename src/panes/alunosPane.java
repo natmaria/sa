@@ -165,7 +165,7 @@ String codigo = "";
         // TODO add your handling code here:
         alunoEditorController editorController = new alunoEditorController();
         Aluno alunoObj = editorController.buscar(codigo);
-        
+        this.dispose();
         alunoEditor editor = new alunoEditor(alunoObj);
         editor.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed

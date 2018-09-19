@@ -95,4 +95,35 @@ public class alunoEditorController
             ConnectionFactory.closeConnection(con, stmt);
         } 
     }
+    
+    public boolean alterar(Aluno objAluno)
+    {
+ 
+    ConnectionFactory.abreConexao();
+    Connection con = ConnectionFactory.getConnection();
+    PreparedStatement stmt = null;
+ 
+    try 
+    {
+        stmt = con.prepareStatement("UPDATE alunos SET nom_alu=?, email=?, cod_curso=? WHERE mat_alu=?");
+        stmt.setString(1, objAluno.getNom_aluno());
+        stmt.setString(2, objAluno.getEmail());
+        stmt.setInt(3, objAluno.getCod_curso());
+        stmt.setInt(4, objAluno.getMat_aluno());
+ 
+        stmt.executeUpdate();
+ 
+        return true;
+ 
+        } 
+    catch (SQLException ex) 
+    {
+        System.out.println(ex.getMessage());
+        return false;
+    }
+    finally
+    {
+    ConnectionFactory.closeConnection(con, stmt);
+    }
+ }
 }

@@ -69,8 +69,9 @@ public class alunoEditor extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         lblNome = new javax.swing.JLabel();
         lblAluno = new javax.swing.JLabel();
-        btnOk = new javax.swing.JButton();
+        btnInserir = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -98,13 +99,13 @@ public class alunoEditor extends javax.swing.JFrame {
         lblAluno.setForeground(new java.awt.Color(51, 153, 255));
         lblAluno.setText("Aluno");
 
-        btnOk.setBackground(new java.awt.Color(51, 153, 255));
-        btnOk.setForeground(new java.awt.Color(255, 255, 255));
-        btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-check.png"))); // NOI18N
-        btnOk.setText("OK");
-        btnOk.addActionListener(new java.awt.event.ActionListener() {
+        btnInserir.setBackground(new java.awt.Color(51, 153, 255));
+        btnInserir.setForeground(new java.awt.Color(255, 255, 255));
+        btnInserir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-check.png"))); // NOI18N
+        btnInserir.setText("OK");
+        btnInserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOkActionPerformed(evt);
+                btnInserirActionPerformed(evt);
             }
         });
 
@@ -114,6 +115,16 @@ public class alunoEditor extends javax.swing.JFrame {
         btnExcluir.setText("Excluir");
         btnExcluir.setBorderPainted(false);
 
+        btnAlterar.setBackground(new java.awt.Color(51, 153, 255));
+        btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-sync.png"))); // NOI18N
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,29 +133,34 @@ public class alunoEditor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblEmail)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEmail))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jcbCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblMatricula)
-                            .addComponent(lblAluno)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnOk)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCancelar))
-                            .addComponent(lblCurso)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(lblNome)
+                                .addComponent(lblEmail)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtEmail))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jcbCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblMatricula)
+                                    .addComponent(lblAluno)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnInserir)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(btnAlterar))
+                                    .addComponent(lblCurso)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(lblNome)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExcluir))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCancelar)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnExcluir)
-                .addGap(22, 22, 22))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,10 +184,12 @@ public class alunoEditor extends javax.swing.JFrame {
                 .addComponent(jcbCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOk)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnExcluir))
-                .addContainerGap(51, Short.MAX_VALUE))
+                    .addComponent(btnInserir)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnAlterar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(btnCancelar)
+                .addContainerGap())
         );
 
         pack();
@@ -184,7 +202,7 @@ public class alunoEditor extends javax.swing.JFrame {
         alunos.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+    private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
         // TODO add your handling code here:
         Aluno objAluno = new Aluno();
         objAluno.setMat_aluno(Integer.parseInt(txtMatricula.getText()));
@@ -198,12 +216,30 @@ public class alunoEditor extends javax.swing.JFrame {
             this.dispose();
             alunosPane alunos = new alunosPane();
             alunos.setVisible(true);
-    }//GEN-LAST:event_btnOkActionPerformed
+    }//GEN-LAST:event_btnInserirActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+        Aluno objAluno = new Aluno();
+//        guardarDados(
+        objAluno.setMat_aluno(Integer.parseInt(txtMatricula.getText()));
+        objAluno.setNom_aluno(txtNome.getText());
+        objAluno.setEmail(txtEmail.getText());
+        objComboCurso= (Combos) jcbCurso.getSelectedItem();
+        objAluno.setCod_curso(Integer.parseInt(objComboCurso.getCodigo()));
+
+        alunoEditorController alunoCon = new alunoEditorController();
+        alunoCon.alterar(objAluno);
+        this.dispose();
+        alunosPane alunos = new alunosPane();
+        alunos.setVisible(true);
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
-    private javax.swing.JButton btnOk;
+    private javax.swing.JButton btnInserir;
     private javax.swing.JComboBox<String> jcbCurso;
     private javax.swing.JLabel lblAluno;
     private javax.swing.JLabel lblCurso;

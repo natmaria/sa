@@ -159,7 +159,7 @@ public class usuariosPane extends javax.swing.JFrame
         // TODO add your handling code here:
         usuarioEditorController editorController = new usuarioEditorController();
         Usuario usuarioObj = editorController.buscar(login);
-
+        this.dispose();
         usuariosEditor editor = new usuariosEditor(usuarioObj);
         editor.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
