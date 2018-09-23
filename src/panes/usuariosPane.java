@@ -29,6 +29,7 @@ public class usuariosPane extends javax.swing.JFrame
          //carregar alunos
         usuariosPaneController usuariosCon = new usuariosPaneController(null, jtbUsuarios);
         usuariosCon.mostrarUsuarios();
+        btnEditar.setEnabled(false);
     }
 
     /**
@@ -157,7 +158,7 @@ public class usuariosPane extends javax.swing.JFrame
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-        usuarioEditorController editorController = new usuarioEditorController();
+        usuarioEditorController editorController = new usuarioEditorController(null);
         Usuario usuarioObj = editorController.buscar(login);
         this.dispose();
         usuariosEditor editor = new usuariosEditor(usuarioObj);
@@ -173,9 +174,9 @@ public class usuariosPane extends javax.swing.JFrame
 
     private void jtbUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbUsuariosMouseClicked
         // TODO add your handling code here:
+        btnEditar.setEnabled(true);
         int linha = jtbUsuarios.getSelectedRow();
-        login = jtbUsuarios.getModel().getValueAt(linha, 0).toString();
-        System.out.println("\n"+login);
+        login = jtbUsuarios.getModel().getValueAt(linha, 1).toString();
     }//GEN-LAST:event_jtbUsuariosMouseClicked
 
 

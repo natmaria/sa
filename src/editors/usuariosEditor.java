@@ -15,27 +15,26 @@ import panes.usuariosPane;
  */
 public class usuariosEditor extends javax.swing.JFrame 
 {
- Usuario usuarioObj;
+ Usuario objUsuario;
     /**
      * Creates new form usuariosEditor
      */
-    public usuariosEditor(Usuario usuarioObj) 
+    public usuariosEditor(Usuario objUsuario) 
     {
         initComponents();
-        this.usuarioObj=usuarioObj;
+        this.objUsuario=objUsuario;
         
         try
         {
-         if (usuarioObj != null)
+         if (objUsuario != null)
          {
-//         preencheDados()
-        txtLogin.setText(usuarioObj.getLogin());
-        txtNome.setText(usuarioObj.getNome());
-        txtSenha.setText(usuarioObj.getSenha());
-        btnInserir.setEnabled(false);
+            preencheDados();
+            btnInserir.setEnabled(false);
+            txtLogin.setEditable(false);
          }
          else
          {
+             preencheVazio();
              btnAlterar.setEnabled(false);
              btnExcluir.setEnabled(false);
          }
@@ -104,6 +103,11 @@ public class usuariosEditor extends javax.swing.JFrame
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-delete.png"))); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.setBorderPainted(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setBackground(new java.awt.Color(51, 153, 255));
         btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
@@ -191,32 +195,60 @@ public class usuariosEditor extends javax.swing.JFrame
     
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
         // TODO add your handling code here:
-        Usuario objUsuario = new Usuario();
-        objUsuario.setNome(txtNome.getText());
-        objUsuario.setLogin(txtLogin.getText());
-        objUsuario.setSenha(txtSenha.getText());
+        objUsuario = preencheUsuario();
         
-        usuarioEditorController usuarioCon = new usuarioEditorController();
-        usuarioCon.incluirUsuario(objUsuario);
-            this.dispose();
-            usuariosPane usuarios = new usuariosPane();
-            usuarios.setVisible(true);
+        usuarioEditorController usuarioCon = new usuarioEditorController(objUsuario);
+        usuarioCon.incluirUsuario();
+        this.dispose();
+        usuariosPane usuarios = new usuariosPane();
+        usuarios.setVisible(true);
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-        Usuario objUsuario = new Usuario();
-        objUsuario.setNome(txtNome.getText());
-        objUsuario.setLogin(txtLogin.getText());
-        objUsuario.setSenha(txtSenha.getText());
+       objUsuario = preencheUsuario();
         
-        usuarioEditorController usuarioCon = new usuarioEditorController();
-        usuarioCon.alterar(objUsuario);
+        usuarioEditorController usuarioCon = new usuarioEditorController(objUsuario);
+        usuarioCon.alterar();
         this.dispose();
         usuariosPane usuarios = new usuariosPane();
         usuarios.setVisible(true);
     }//GEN-LAST:event_btnAlterarActionPerformed
 
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        String login = txtLogin.getText();
+        
+        usuarioEditorController usuarioCon = new usuarioEditorController(null);
+        usuarioCon.excluir(login);
+        this.dispose();
+        usuariosPane usuarios = new usuariosPane();
+        usuarios.setVisible(true);
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    public void preencheDados() 
+    {
+        txtLogin.setText(objUsuario.getLogin());
+        txtNome.setText(objUsuario.getNome());
+        txtSenha.setText(objUsuario.getSenha());
+    }
+    
+    public void preencheVazio()
+    {
+    txtLogin.setText("");
+    txtNome.setText("");
+    txtSenha.setText("");    
+    }
+    
+    public Usuario preencheUsuario()
+    {
+        Usuario objUsuario = new Usuario();
+        objUsuario.setNome(txtNome.getText());
+        objUsuario.setLogin(txtLogin.getText());
+        objUsuario.setSenha(txtSenha.getText());
+        
+        return objUsuario;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

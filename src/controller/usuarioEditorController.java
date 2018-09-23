@@ -10,6 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.text.DateFormatter;
 import model.Usuario;
 import sys.ConnectionFactory;
 
@@ -19,8 +22,11 @@ import sys.ConnectionFactory;
  */
 public class usuarioEditorController 
 {
-    static Usuario objUsuario;
-    
+ static Usuario objUsuario;
+    public usuarioEditorController(Usuario objUsuario) 
+    {
+    this.objUsuario = objUsuario;
+    }
     public  static Usuario buscar(String login)
     {
         try {
@@ -64,10 +70,10 @@ public class usuarioEditorController
         System.out.println ("Executou buscar aluno com sucesso");
         return objUsuario;
     }
+
     
-    public boolean incluirUsuario(Usuario objUsuario)
+    public boolean incluirUsuario()
     {
-        this.objUsuario=objUsuario;
         
         ConnectionFactory.abreConexao();
         Connection con = ConnectionFactory.getConnection();
@@ -96,7 +102,7 @@ public class usuarioEditorController
         } 
     }
     
-    public boolean alterar(Usuario objUsuario)
+    public boolean alterar()
     {
  
     ConnectionFactory.abreConexao();
@@ -109,7 +115,7 @@ public class usuarioEditorController
         stmt.setString(1, objUsuario.getNome());
         stmt.setString(2, objUsuario.getSenha());
         stmt.setString(3, objUsuario.getLogin());
- 
+        
         stmt.executeUpdate();
  
         return true;
@@ -125,4 +131,30 @@ public class usuarioEditorController
     ConnectionFactory.closeConnection(con, stmt);
     }
  }
+        
+    public boolean excluir(String login)
+    {
+        
+        ConnectionFactory.abreConexao();
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+ 
+        try{
+            stmt = con.prepareStatement("DELETE from usuarios where login='"+ login +"'");
+            //stmt = con.prepareStatement("UPDATE aluno SET dataExclusao=? WHERE mat_alu=?");
+            //stmt.setString(1, objAluno.getDataExclusao());
+            //stmt.setInt(2, objAluno.getMat_aluno());
+                        
+            stmt.executeUpdate();
+            
+            return true;
+            
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+        
+    }
 }

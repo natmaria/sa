@@ -38,14 +38,14 @@ public class usuariosPaneController
         ConnectionFactory.abreConexao();
         Vector<String> cabecalhos = new Vector<String>();
         Vector dadosTabela = new Vector();
-        cabecalhos.add("Login");
         cabecalhos.add("Nome");
+        cabecalhos.add("Login");
         
         ResultSet result = null;
         try
         {
             String SQL = "";
-            SQL = " SELECT login, nome ";
+            SQL = " SELECT nome, login ";
             SQL+=" FROM usuarios ";
             SQL+= " ORDER BY nome ";
             result = ConnectionFactory.stmt.executeQuery(SQL);

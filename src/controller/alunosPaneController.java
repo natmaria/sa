@@ -49,6 +49,7 @@ public class alunosPaneController
             SQL = " SELECT mat_alu, c.nom_curso, nom_alu ";
             SQL+=" FROM alunos a, cursos c";
             SQL+=" WHERE a.cod_curso=c.cod_curso ";
+//            SQL+=" AND COALESCE(dataExclusao,'') = '' ";
             SQL+= " ORDER BY nom_alu ";
             result = ConnectionFactory.stmt.executeQuery(SQL);
             
